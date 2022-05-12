@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width">
+    <title>Taxi App</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" type="text/css" href="semantic/semantic.min.css">
+    <script defer src="https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.1.1.min.js"
+        integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8=" crossorigin="anonymous"></script>
+    <script src="semantic/semantic.min.js"></script>
+    <script src="app.js"></script>
+</head>
+
+<body>
+    <div class="container">
+        <div x-data="taxi">
+            <h1 class="ui header center aligned">Taxi Trip</h1>
+            <div class="row">
+                Total made a day:<p x-text="totalPrice().toFixed(2)" class="totalPrice"></p>
+                Total number of ques:<p x-text="totalPrice().toFixed(2)" class="totalPrice"></p>
+
+            </div>
+
+            <div class="row">
+                <table class="ui very basic celled table">
+                    <tr>
+                        <th>Depature</th>
+                        <th>Destination</th>
+                        <th>Passenger Actions</th>
+                        <th>Taxi Trips</th>
+                        <th>Taxi Fare</th>
+                        <th>Total Fair</th>
+                        <th>Taxi Available</th>
+                    </tr>
+                    <tr>
+                        <td>Cape Town</td>
+                        <td>Rondebosch</td>
+                        <td>
+
+                            <div x-data="{qty:0}" class="ui large buttons">
+
+                                <button class="ui secondary button" @click="qty++">
+                                    <i class="plus circle icon"></i>
+                                </button>
+                                <div x-text="qty" :data-text="qty" class="or"></div>
+                                <button class="ui secondary button" @click="qty--">
+                                    <i class="minus circle icon"></i>
+                                </button>
+                            </div>
+                        </td>
+                        <td>
+                            <div class="ui buttons">
+                                <button class="ui red basic button">Leave</button>
+                                <button class="ui blue basic button">0</button>
+                            </div>
+                        </td>
+                        <td>R50.00</td>
+                        <td>R0.00</td>
+                        <td>0</td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+    </div>
+
+</body>
+
+</html>
