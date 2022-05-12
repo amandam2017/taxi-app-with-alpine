@@ -11,6 +11,7 @@ document.addEventListener('alpine:init', () => {
                 fare: 15.5,
                 trips: 0,
                 queue: 0,
+                availableTaxi:5,
                 totalFare(){
                     return Number(this.fare) * 10 // Number(this.passengersPerTaxi)
                 },
@@ -26,12 +27,13 @@ document.addEventListener('alpine:init', () => {
                 fare: 23,
                 trips: 0,
                 queue: 0,
+                availableTaxi:5,
                 totalFare(){
                     return Number(this.fare) * 10 // Number(this.passengersPerTaxi)
                 },
                 qtyUpFun() {
                     this.queue++;
-                    console.log(this.queue);
+                    // console.log(this.queue);
                 },
                 qtydownFun() {
                     this.queue--
@@ -43,6 +45,7 @@ document.addEventListener('alpine:init', () => {
                 fare: 20,
                 trips: 0,
                 queue: 0,
+                availableTaxi:5,
                 totalFare(){
                     return Number(this.fare) * 10 // Number(this.passengersPerTaxi)
                 },
@@ -59,6 +62,7 @@ document.addEventListener('alpine:init', () => {
                 fare: 22,
                 trips: 0,
                 queue: 0,
+                availableTaxi:5,
                 totalFare(){
                     return Number(this.fare) * 10 // Number(this.passengersPerTaxi)
                 },
@@ -91,6 +95,8 @@ document.addEventListener('alpine:init', () => {
            
             currentRoute.trips++;
             currentRoute.queue -= 10;
+            currentRoute.availableTaxi -=1;
+
 
             // leaveCountFun(); 
             // calculatedTotalFair();
