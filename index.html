@@ -32,10 +32,10 @@
                         <th>Passenger Actions</th>
                         <th>Taxi Trips</th>
                         <th>Taxi Fare</th>
-                        <th>Total Fair</th>
+                        <th>Total Fare</th>
                         <th>Taxi Available</th>
                     </tr>
-                    <tr>
+                    <!-- <tr x-show="false">
                         <td>Cape Town</td>
                         <td>Rondebosch</td>
                         <td>
@@ -53,14 +53,45 @@
                         </td>
                         <td>
                             <div class="ui buttons">
-                                <button class="ui red basic button" @click="leaveCountFun(), calculatedTotalFair()">Leave</button>
+                                <button class="ui red basic button" @click="takeTripFromPassengers()">Leave</button>
                                 <button x-text="leaveCount" class="ui green basic button"></button>
                             </div>
                         </td>
                         <td>R18.00</td>
                         <td x-text="totalfair"></td>
                         <td x-text="actualTaxisAvailable()"></td>
-                    </tr>
+                    </tr> -->
+
+                    <tbody>
+                        <template x-for="route in routes"> 
+                            <tr>
+                                <td>Cape Town</td>
+                                <td x-text="route.name"></td>
+                                <td>
+
+                                    <div class="ui large buttons">
+        
+                                        <button class="ui secondary button" @click="route.qtyUpFun()">
+                                            <i class="plus circle icon"></i>
+                                        </button>
+                                        <div x-text="route.queue" :data-text="route.queue" class="or"></div>
+                                        <button class="ui secondary button" @click="route.qtydownFun()">
+                                            <i class="minus circle icon"></i>
+                                        </button>
+                                    </div>
+                                </td>
+                                <td>
+                                    <div class="ui buttons">
+                                        <button class="ui red basic button" @click="takeTripFromPassengers(route)">Leave</button>
+                                        <button x-text="route.trips" class="ui green basic button"></button>
+                                    </div>
+                                </td>
+                                <td x-text="`R${route.fare}`"></td>
+                                <td x-text="`R${route.totalFare()}`"></td>
+                                <td x-text="`34`"></td>
+                            </tr>
+                        </template>
+                    </tbody>
                 </table>
             </div>
         </div>
