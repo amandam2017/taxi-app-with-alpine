@@ -19,8 +19,8 @@
         <div x-data="taxi">
             <h1 class="ui header center aligned">Taxi Trip</h1>
             <div class="row">
-                Total made a day:<p x-text="totalPrice().toFixed(2)" class="totalPrice"></p>
-                Total number of ques:<p x-text="totalPrice().toFixed(2)" class="totalPrice"></p>
+                Total made a day:<p class="tripsOverall"></p>
+                Total number of ques:<p class="tripsQty"></p>
 
             </div>
 
@@ -40,26 +40,26 @@
                         <td>Rondebosch</td>
                         <td>
 
-                            <div x-data="{qty:0}" class="ui large buttons">
+                            <div class="ui large buttons">
 
-                                <button class="ui secondary button" @click="qty++">
+                                <button class="ui secondary button" @click="qtyUpFun()">
                                     <i class="plus circle icon"></i>
                                 </button>
                                 <div x-text="qty" :data-text="qty" class="or"></div>
-                                <button class="ui secondary button" @click="qty--">
+                                <button class="ui secondary button" @click="qtydownFun()">
                                     <i class="minus circle icon"></i>
                                 </button>
                             </div>
                         </td>
                         <td>
                             <div class="ui buttons">
-                                <button class="ui red basic button">Leave</button>
-                                <button class="ui blue basic button">0</button>
+                                <button class="ui red basic button" @click="leaveCountFun()">Leave</button>
+                                <button x-text="leaveCount" class="ui green basic button"></button>
                             </div>
                         </td>
                         <td>R50.00</td>
                         <td>R0.00</td>
-                        <td>0</td>
+                        <td x-text="actualTaxisAvailable()"></td>
                     </tr>
                 </table>
             </div>
