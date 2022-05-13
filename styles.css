@@ -2,3 +2,11 @@
     width:80%;
     margin: auto;
 }
+
+.ui.center.aligned.header{
+    border: 1px solid;
+}
+
+.add-more{
+    margin: 30px 0;
+}

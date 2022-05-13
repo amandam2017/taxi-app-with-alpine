@@ -3,8 +3,8 @@ document.addEventListener('alpine:init', () => {
         qty: 0,
         leaveCount: 0,
         availableTaxi: 5,
-        totalfair: 0,
-        passengersPerTaxi: 6,
+        // totalfair: 0,
+        passengersPerTaxi: 10,
         routes: [
             {
                 name: 'Rondebosch',
@@ -12,8 +12,9 @@ document.addEventListener('alpine:init', () => {
                 trips: 0,
                 queue: 0,
                 availableTaxi:5,
+                costPerTrip:0,
                 totalFare(){
-                    return Number(this.fare) * 10 // Number(this.passengersPerTaxi)
+                    return Number(this.fare) * 10//Number(this.passengersPerTaxi)
                 },
                 qtyUpFun() {
                     this.queue++
@@ -28,8 +29,9 @@ document.addEventListener('alpine:init', () => {
                 trips: 0,
                 queue: 0,
                 availableTaxi:5,
+                costPerTrip:0,
                 totalFare(){
-                    return Number(this.fare) * 10 // Number(this.passengersPerTaxi)
+                    return Number(this.fare) * 10//Number(this.passengersPerTaxi)
                 },
                 qtyUpFun() {
                     this.queue++;
@@ -46,6 +48,7 @@ document.addEventListener('alpine:init', () => {
                 trips: 0,
                 queue: 0,
                 availableTaxi:5,
+                costPerTrip:0,
                 totalFare(){
                     return Number(this.fare) * 10 // Number(this.passengersPerTaxi)
                 },
@@ -63,6 +66,7 @@ document.addEventListener('alpine:init', () => {
                 trips: 0,
                 queue: 0,
                 availableTaxi:5,
+                costPerTrip:0,
                 totalFare(){
                     return Number(this.fare) * 10 // Number(this.passengersPerTaxi)
                 },
@@ -75,6 +79,7 @@ document.addEventListener('alpine:init', () => {
 
             }
         ],
+        
 
         // qtyUpFun(){
         //     this.qty++
@@ -92,10 +97,13 @@ document.addEventListener('alpine:init', () => {
         //     return this.totalfair+=200
         // },
         takeTripFromPassengers(currentRoute){
+            console.log(currentRoute);
+            currentRoute.costPerTrip += currentRoute.totalFare();
            
             currentRoute.trips++;
             currentRoute.queue -= 10;
             currentRoute.availableTaxi -=1;
+            // total+=10
 
 
             // leaveCountFun(); 
