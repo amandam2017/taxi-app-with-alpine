@@ -8,7 +8,7 @@ Default data:
 -taxi fare for a specific route
 
 
-#Logic Summary:
+# Logic Summary:
 
 LEAVE/TAKE TRIP: When a taxi leaves(take a trip) the number of available taxis should be updated. In this case since I have 5 taxis available by default...so when the taxi leaves : its gonna be a minus 1 from the available taxi's untill there is 0 available taxis and at that point we cannot tale/make a trip even if we have 100 people on the queue.
 
