@@ -12,6 +12,8 @@
     <script src="https://code.jquery.com/jquery-3.1.1.min.js"
         integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8=" crossorigin="anonymous"></script>
     <script src="semantic/semantic.min.js"></script>
+    <!-- Alpine Plugins -->
+<script defer src="https://unpkg.com/@alpinejs/persist@3.x.x/dist/cdn.min.js"></script>
     <script src="app.js"></script>
 </head>
 
@@ -27,35 +29,34 @@
                     Total number of ques:<p class="tripsQty"></p>
                 </div>
 
-
-                <div>
-                    <div x-data="{ openAddRoute: false }" class="add-route">
-                        <div x-show="openAddRoute" class="show-destination">
-                            <label for="destination">Destination</label>
-                            <input type="text" placeholder="enter destination">
-                            <label for="destination">Taxi Fare</label>
-                            <input type="number" step="0.01" placeholder="enter amount">
-                            <button>Add</button>
-
+                    <template x-for="route in routes">
+                        <div x-data="{ openAddRoute: false }" class="add-route">
+                            <div x-show="openAddRoute" class="show-destination">
+                                <label for="destination">Destination</label>
+                                <input id="destination" type="text" placeholder="enter destination">
+                                <label for="destination">Taxi Fare</label>
+                                <input id="fareForDestination" type="number" step="0.01" placeholder="enter amount">
+                                <button @click="addToRoute(route)" type="submit">Add</button>
+    
+                            </div>
+                            <button @click="openAddRoute = !openAddRoute" class="ui secondary button">Add
+                                Route</button>
                         </div>
-                        <button @click="openAddRoute = !openAddRoute" class="ui secondary button">Add
-                            Route</button>
-                    </div>
-
-                    <div x-data="{ openAddTaxi: false }" class="add-taxi">
-                        <div x-show="openAddTaxi" class="show-destination">
-                            <label for="destination">Destination</label>
-                            <input type="text" placeholder="enter destination">
-                            <label for="destination">Taxi Fare</label>
-                            <input type="number" step="0.01" placeholder="enter amount">
-                            <button>Add</button>
-
+    
+                        <div x-data="{ openAddTaxi: false }" class="add-taxi">
+                            <div x-show="openAddTaxi" class="show-destination">
+                                <label for="destination">Destination</label>
+                                <input type="text" placeholder="enter destination">
+                                <label for="destination">Taxi Fare</label>
+                                <input type="number" step="0.01" placeholder="enter amount">
+                                <button>Add</button>
+    
+                            </div>
+                            <!--  -->
+                            <button @click="openAddTaxi = !openAddTaxi" class="ui secondary button">Add
+                                Taxi</button>
                         </div>
-                        <!--  -->
-                        <button @click="openAddTaxi = !openAddTaxi" class="ui secondary button">Add
-                            Taxi</button>
-                    </div>
-                </div>
+                    </template>
             </div>
 
 
@@ -91,7 +92,7 @@
                                 </td>
                                 <td>
                                     <div class="ui buttons">
-                                        <button x-bind:disabled="route.queue < passengersPerTaxi && availableTaxi >0" class="ui red basic button"
+                                        <button x-bind:disabled="(route.queue < passengersPerTaxi) && (availableTaxi > 0)" class="ui red basic button"
                                             @click="takeTripFromPassengers(route)">Leave</button>
                                         <button x-text="route.trips" class="ui green basic button"></button>
                                     </div>

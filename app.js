@@ -4,7 +4,8 @@ document.addEventListener('alpine:init', () => {
         leaveCount: 0,
         availableTaxi: 5,
         // totalfair: 0,
-        passengersPerTaxi: 10,
+        passengersPerTaxi: 3,
+        
         routes: [
             {
                 name: 'Rondebosch',
@@ -14,7 +15,7 @@ document.addEventListener('alpine:init', () => {
                 availableTaxi:5,
                 costPerTrip:0,
                 totalFare(){
-                    return Number(this.fare) * 10//Number(this.passengersPerTaxi)
+                    return Number(this.fare) * 3//Number(this.passengersPerTaxi)
                 },
                 qtyUpFun() {
                     this.queue++
@@ -78,30 +79,14 @@ document.addEventListener('alpine:init', () => {
                 },
 
             }
-        ],
+        ],  
         
-
-        // qtyUpFun(){
-        //     this.qty++
-        // },
-        // qtydownFun(){
-        //     this.qty--
-        // },
-        // leaveCountFun(){
-        //     this.leaveCount++
-        // },
-        // actualTaxisAvailable(){
-        //     return this.availableTaxi - this.leaveCount
-        // },
-        // calculatedTotalFair(){
-        //     return this.totalfair+=200
-        // },
         takeTripFromPassengers(currentRoute){
-            console.log(currentRoute);
+            // console.log(currentRoute);
             currentRoute.costPerTrip += currentRoute.totalFare();
            
             currentRoute.trips++;
-            currentRoute.queue -= 10;
+            currentRoute.queue -= 3;
             currentRoute.availableTaxi -=1;
             // total+=10
 
@@ -109,6 +94,16 @@ document.addEventListener('alpine:init', () => {
             // leaveCountFun(); 
             // calculatedTotalFair();
             // return this.qty - this.passengersPerTaxi
+        },
+
+        addToRoute(currentRoute){
+            console.log(currentRoute);
+
+            currentRoute.push({
+                name: document.getElementById(fareForDestination).value,
+                fare: document.getElementById(destination).value,
+            })
         }
+        
     }))
 })
