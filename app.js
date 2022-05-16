@@ -97,12 +97,17 @@ document.addEventListener('alpine:init', () => {
         },
 
         addToRoute(currentRoute){
-            console.log(currentRoute);
+            // console.log(currentRoute);
 
             currentRoute.push({
-                name: document.getElementById(fareForDestination).value,
-                fare: document.getElementById(destination).value,
+                name: document.getElementById('destination').value,
+                fare: document.getElementById('fareForDestination').value,
+                availableTaxi:5,
+                costPerTrip:0
+                
             })
+            console.log(name);
+
         }
         
     }))
