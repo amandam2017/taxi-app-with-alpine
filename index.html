@@ -30,7 +30,7 @@
                 </div>
 
                 <!-- <template x-for="route in routes"> -->
-                <div x-data="{ openAddRoute: false }" , colsole.log(openAddRoute) class="add-route">
+                <div x-data="{ openAddRoute: false }" class="add-route">
                     <div x-show="openAddRoute" class="show-destination">
                         <label for="destination">Destination</label>
                         <input id="destination" type="text" placeholder="enter destination">
@@ -39,17 +39,14 @@
                         <button @click="addToRoute(routes)" type="submit">Add</button>
                     </div>
                     <button @click="openAddRoute = !openAddRoute" class="ui secondary button">Add
-                        Route</button>
+                        Destination</button>
                 </div>
 
                 <div x-data="{ openAddTaxi: false }" class="add-taxi">
                     <div x-show="openAddTaxi" class="show-destination">
-                        <label for="destination">Destination</label>
-                        <input type="text" placeholder="enter destination">
-                        <label for="destination">Taxi Fare</label>
+                        <label for="destination">Taxi</label>
                         <input type="number" step="0.01" placeholder="enter amount">
                         <button>Add</button>
-
                     </div>
                     <!--  -->
                     <button @click="openAddTaxi = !openAddTaxi" class="ui secondary button">Add
@@ -80,11 +77,11 @@
 
                                     <div class="ui large buttons">
 
-                                        <button class="ui secondary button" @click="route.qtyUpFun()">
+                                        <button class="ui secondary button" @click="qtyUpFun(route)">
                                             <i class="plus circle icon"></i>
                                         </button>
                                         <div x-text="route.queue" :data-text="route.queue" class="or"></div>
-                                        <button class="ui secondary button" @click="route.qtydownFun()">
+                                        <button class="ui secondary button" @click="qtydownFun(route)">
                                             <i class="minus circle icon"></i>
                                         </button>
                                     </div>
@@ -102,13 +99,19 @@
                                 <!-- <td x-text="`R${route.totalFare()}`"></td> -->
                                 <td x-text="route.costPerTrip"></td>
                                 <td x-text="route.availableTaxi"></td>
+
+                                <!-- <div style="display: table-row">
+                                    <div style="display: table-cell" x-text="route.name"></div>
+                                    <div style="display: table-cell" x-text="route.destination"></div>
+                                </div> -->
                             </tr>
-                            <tr>
+
+                            <!-- <tr>
                                 <div style="display: table-row">
                                     <div style="display: table-cell" x-text="route.name"></div>
                                     <div style="display: table-cell" x-text="route.destination"></div>
                                 </div>
-                            </tr>
+                            </tr> -->
                         </template>
                     </tbody>
                 </table>

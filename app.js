@@ -5,6 +5,8 @@ document.addEventListener('alpine:init', () => {
         availableTaxi: 5,
         // totalfair: 0,
         passengersPerTaxi: 3,
+        queue: 0,
+         
         
         routes: [
             {
@@ -17,12 +19,12 @@ document.addEventListener('alpine:init', () => {
                 totalFare(){
                     return Number(this.fare) * 3//Number(this.passengersPerTaxi)
                 },
-                qtyUpFun() {
-                    this.queue++
-                },
-                qtydownFun() {
-                    this.queue--
-                },
+                // qtyUpFun() {
+                //     this.queue++
+                // },
+                // qtydownFun() {
+                //     this.queue--
+                // },
             },
             {
                 name: 'Bellville',
@@ -34,13 +36,13 @@ document.addEventListener('alpine:init', () => {
                 totalFare(){
                     return Number(this.fare) * 10//Number(this.passengersPerTaxi)
                 },
-                qtyUpFun() {
-                    this.queue++;
-                    // console.log(this.queue);
-                },
-                qtydownFun() {
-                    this.queue--
-                },
+                // qtyUpFun() {
+                //     this.queue++;
+                //     // console.log(this.queue);
+                // },
+                // qtydownFun() {
+                //     this.queue--
+                // },
 
             },
             {
@@ -53,12 +55,12 @@ document.addEventListener('alpine:init', () => {
                 totalFare(){
                     return Number(this.fare) * 10 // Number(this.passengersPerTaxi)
                 },
-                qtyUpFun() {
-                    this.queue++
-                },
-                qtydownFun() {
-                    this.queue--
-                },
+                // qtyUpFun() {
+                //     this.queue++
+                // },
+                // qtydownFun() {
+                //     this.queue--
+                // },
 
             },
             {
@@ -71,15 +73,17 @@ document.addEventListener('alpine:init', () => {
                 totalFare(){
                     return Number(this.fare) * 10 // Number(this.passengersPerTaxi)
                 },
-                qtyUpFun() {
-                    this.queue++
-                },
-                qtydownFun() {
-                    this.queue--
-                },
+               
 
             }
-        ],  
+        ],
+        
+        // qtyUpFun() {
+        //     this.queue++
+        // },
+        // qtydownFun() {
+        //     this.queue--
+        // },
         
         takeTripFromPassengers(currentRoute){
             // console.log(currentRoute);
@@ -88,12 +92,6 @@ document.addEventListener('alpine:init', () => {
             currentRoute.trips++;
             currentRoute.queue -= 3;
             currentRoute.availableTaxi -=1;
-            // total+=10
-
-
-            // leaveCountFun(); 
-            // calculatedTotalFair();
-            // return this.qty - this.passengersPerTaxi
         },
 
         addToRoute(currentRoute){
@@ -103,10 +101,24 @@ document.addEventListener('alpine:init', () => {
                 name: document.getElementById('destination').value,
                 fare: document.getElementById('fareForDestination').value,
                 availableTaxi:5,
-                costPerTrip:0
+                costPerTrip:0, 
+                queue: 0,
+                trips: 0,
                 
             })
-            console.log(name);
+
+        },
+
+        qtyUpFun(route) {
+            // console.log(routes);
+            this.route.queue++
+            // console.log(this.route.queue);
+
+        },
+        qtydownFun(route) {
+            this.route.queue--
+        },
+        addTaxi(){
 
         }
         
