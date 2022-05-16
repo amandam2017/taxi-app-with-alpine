@@ -7,7 +7,7 @@ document.addEventListener('alpine:init', () => {
         passengersPerTaxi: 3,
         queue: 0,
          
-        
+        // $persist(routes)
         routes: [
             {
                 name: 'Rondebosch',
@@ -16,9 +16,6 @@ document.addEventListener('alpine:init', () => {
                 queue: 0,
                 availableTaxi:5,
                 costPerTrip:0,
-                // totalFare(){
-                //     return Number(this.fare) * 3//Number(this.passengersPerTaxi)
-                // },
             },
             {
                 name: 'Bellville',
@@ -27,9 +24,6 @@ document.addEventListener('alpine:init', () => {
                 queue: 0,
                 availableTaxi:5,
                 costPerTrip:0,
-                // totalFare(){
-                //     return Number(this.fare) * 10//Number(this.passengersPerTaxi)
-                // },
             },
             {
                 name: 'Langa',
@@ -38,9 +32,6 @@ document.addEventListener('alpine:init', () => {
                 queue: 0,
                 availableTaxi:5,
                 costPerTrip:0,
-                // totalFare(){
-                //     return Number(this.fare) * 10 // Number(this.passengersPerTaxi)
-                // },
             },
             {
                 name: 'Mfuleni',
@@ -49,13 +40,15 @@ document.addEventListener('alpine:init', () => {
                 queue: 0,
                 availableTaxi:5,
                 costPerTrip:0,
-                // totalFare(){
-                //     return Number(this.fare) * 10 // Number(this.passengersPerTaxi)
-                // },
                
-
             }
         ],
+
+        buttonEnable(route){
+            if(this.route.availableTaxi > 0){
+                return 'null'
+            }
+        },
 
         totalFare(route){
             return Number(this.route.fare) * 3 // Number(this.passengersPerTaxi)

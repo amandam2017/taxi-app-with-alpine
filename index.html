@@ -90,9 +90,9 @@
                                 <td>
                                     <div class="ui buttons">
                                         <button
-                                            x-bind:disabled="(route.queue < passengersPerTaxi) && (availableTaxi > 0)"
+                                            x-bind:disabled="buttonEnable(route) && route.queue < passengersPerTaxi"
                                             class="ui red basic button"
-                                            @click="takeTripFromPassengers(route)">Leave</button>
+                                            @click="takeTripFromPassengers(route), console.log(buttonEnable(route))">Leave</button>
                                         <button x-text="route.trips" class="ui green basic button"></button>
                                     </div>
                                 </td>
