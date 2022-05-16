@@ -8,17 +8,18 @@
     <link rel="stylesheet" type="text/css" href="semantic/semantic.min.css">
     <link rel="stylesheet" href="styles.css">
 
+    <script defer src="https://unpkg.com/@alpinejs/persist@3.x.x/dist/cdn.min.js"></script>
     <script defer src="https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js"></script>
     <script src="https://code.jquery.com/jquery-3.1.1.min.js"
         integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8=" crossorigin="anonymous"></script>
     <script src="semantic/semantic.min.js"></script>
     <!-- Alpine Plugins -->
-    <script defer src="https://unpkg.com/@alpinejs/persist@3.x.x/dist/cdn.min.js"></script>
     <script src="app.js"></script>
 </head>
 
 <body>
     <div class="container">
+        <!-- x-data="{ count: $persist(0) }" -->
         <div x-data="taxi">
             <div class="row">
                 <h1 class="ui header center aligned">Taxi Trip</h1>
@@ -45,8 +46,8 @@
                 <div x-data="{ openAddTaxi: false }" class="add-taxi">
                     <div x-show="openAddTaxi" class="show-destination">
                         <label for="destination">Taxi</label>
-                        <input type="number" step="0.01" placeholder="enter amount">
-                        <button>Add</button>
+                        <input type="text" placeholder="enter amount">
+                        <button @click="addTaxi(routes)"> Add</button>
                     </div>
                     <!--  -->
                     <button @click="openAddTaxi = !openAddTaxi" class="ui secondary button">Add

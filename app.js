@@ -3,7 +3,7 @@ document.addEventListener('alpine:init', () => {
         qty: 0,
         leaveCount: 0,
         availableTaxi: 5,
-        // totalfair: 0,
+        // fare: 0,
         passengersPerTaxi: 3,
         queue: 0,
          
@@ -16,14 +16,8 @@ document.addEventListener('alpine:init', () => {
                 queue: 0,
                 availableTaxi:5,
                 costPerTrip:0,
-                totalFare(){
-                    return Number(this.fare) * 3//Number(this.passengersPerTaxi)
-                },
-                // qtyUpFun() {
-                //     this.queue++
-                // },
-                // qtydownFun() {
-                //     this.queue--
+                // totalFare(){
+                //     return Number(this.fare) * 3//Number(this.passengersPerTaxi)
                 // },
             },
             {
@@ -33,17 +27,9 @@ document.addEventListener('alpine:init', () => {
                 queue: 0,
                 availableTaxi:5,
                 costPerTrip:0,
-                totalFare(){
-                    return Number(this.fare) * 10//Number(this.passengersPerTaxi)
-                },
-                // qtyUpFun() {
-                //     this.queue++;
-                //     // console.log(this.queue);
+                // totalFare(){
+                //     return Number(this.fare) * 10//Number(this.passengersPerTaxi)
                 // },
-                // qtydownFun() {
-                //     this.queue--
-                // },
-
             },
             {
                 name: 'Langa',
@@ -52,16 +38,9 @@ document.addEventListener('alpine:init', () => {
                 queue: 0,
                 availableTaxi:5,
                 costPerTrip:0,
-                totalFare(){
-                    return Number(this.fare) * 10 // Number(this.passengersPerTaxi)
-                },
-                // qtyUpFun() {
-                //     this.queue++
+                // totalFare(){
+                //     return Number(this.fare) * 10 // Number(this.passengersPerTaxi)
                 // },
-                // qtydownFun() {
-                //     this.queue--
-                // },
-
             },
             {
                 name: 'Mfuleni',
@@ -70,24 +49,23 @@ document.addEventListener('alpine:init', () => {
                 queue: 0,
                 availableTaxi:5,
                 costPerTrip:0,
-                totalFare(){
-                    return Number(this.fare) * 10 // Number(this.passengersPerTaxi)
-                },
+                // totalFare(){
+                //     return Number(this.fare) * 10 // Number(this.passengersPerTaxi)
+                // },
                
 
             }
         ],
-        
-        // qtyUpFun() {
-        //     this.queue++
-        // },
-        // qtydownFun() {
-        //     this.queue--
-        // },
+
+        totalFare(route){
+            return Number(this.route.fare) * 3 // Number(this.passengersPerTaxi)
+        },
         
         takeTripFromPassengers(currentRoute){
-            // console.log(currentRoute);
-            currentRoute.costPerTrip += currentRoute.totalFare();
+            let tripFare = this.totalFare(currentRoute)
+            console.log(Number(tripFare));
+            currentRoute.costPerTrip += tripFare;
+            // console.log(currentRoute.totalFare(currentRoute));
            
             currentRoute.trips++;
             currentRoute.queue -= 3;
@@ -96,7 +74,6 @@ document.addEventListener('alpine:init', () => {
 
         addToRoute(currentRoute){
             // console.log(currentRoute);
-
             currentRoute.push({
                 name: document.getElementById('destination').value,
                 fare: document.getElementById('fareForDestination').value,
@@ -110,14 +87,12 @@ document.addEventListener('alpine:init', () => {
         },
 
         qtyUpFun(route) {
-            // console.log(routes);
             this.route.queue++
-            // console.log(this.route.queue);
-
         },
         qtydownFun(route) {
             this.route.queue--
         },
+
         addTaxi(){
 
         }
