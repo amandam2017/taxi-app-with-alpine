@@ -7,7 +7,6 @@ document.addEventListener('alpine:init', () => {
         passengersPerTaxi: 3,
         queue: 0,
          
-        // $persist(routes)
         routes: [
             {
                 name: 'Rondebosch',
@@ -44,9 +43,22 @@ document.addEventListener('alpine:init', () => {
             }
         ],
 
+        myRoutes() {
+            return {
+              taxi: Alpine.$persist(routes)
+            };
+          },
+
         buttonEnable(route){
             if(this.route.availableTaxi > 0){
-                return 'null'
+                return 'still taxis available'
+            }
+        },
+
+        addTaxi(route){
+            
+            if(this.route.availableTaxi == 0){
+                return this.route.availableTaxi++
             }
         },
 
@@ -85,10 +97,6 @@ document.addEventListener('alpine:init', () => {
         qtydownFun(route) {
             this.route.queue--
         },
-
-        addTaxi(){
-
-        }
         
     }))
 })

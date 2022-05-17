@@ -8,13 +8,13 @@
     <link rel="stylesheet" type="text/css" href="semantic/semantic.min.css">
     <link rel="stylesheet" href="styles.css">
 
+    <script src="app.js"></script>
     <script defer src="https://unpkg.com/@alpinejs/persist@3.x.x/dist/cdn.min.js"></script>
     <script defer src="https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js"></script>
     <script src="https://code.jquery.com/jquery-3.1.1.min.js"
         integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8=" crossorigin="anonymous"></script>
     <script src="semantic/semantic.min.js"></script>
     <!-- Alpine Plugins -->
-    <script src="app.js"></script>
 </head>
 
 <body>
@@ -30,7 +30,6 @@
                     Total number of ques:<p class="tripsQty"></p>
                 </div>
 
-                <!-- <template x-for="route in routes"> -->
                 <div x-data="{ openAddRoute: false }" class="add-route">
                     <div x-show="openAddRoute" class="show-destination">
                         <label for="destination">Destination</label>
@@ -43,16 +42,15 @@
                         Destination</button>
                 </div>
 
-                <div x-data="{ openAddTaxi: false }" class="add-taxi">
+                <!-- <div x-data="{ openAddTaxi: false }" class="add-taxi">
                     <div x-show="openAddTaxi" class="show-destination">
                         <label for="destination">Taxi</label>
                         <input type="text" placeholder="enter amount">
                         <button @click="addTaxi(routes)"> Add</button>
                     </div>
-                    <!--  -->
                     <button @click="openAddTaxi = !openAddTaxi" class="ui secondary button">Add
                         Taxi</button>
-                </div>
+                </div> -->
                 <!-- </template> -->
             </div>
 
@@ -99,7 +97,10 @@
                                 <td x-text="`R${route.fare}`"></td>
                                 <!-- <td x-text="`R${route.totalFare()}`"></td> -->
                                 <td x-text="route.costPerTrip"></td>
-                                <td x-text="route.availableTaxi"></td>
+                                <td>
+                                    <span x-text="route.availableTaxi"></span>
+                                    <button @click="console.log(addTaxi(route))"> Add</button>
+                                </td>
 
                                 <!-- <div style="display: table-row">
                                     <div style="display: table-cell" x-text="route.name"></div>
@@ -116,6 +117,10 @@
                         </template>
                     </tbody>
                 </table>
+
+                <!-- <div x-data="{ routes: localStorage.getItem('msg') }" x-init="$watch('routes', (val) => localStorage.setItem('msg', val))">
+                    <div><code>localStorage.getItem('msg')</code>: "<span x-text="localStorage.getItem('msg')"></span>"</div>
+                  </div> -->
             </div>
         </div>
     </div>
