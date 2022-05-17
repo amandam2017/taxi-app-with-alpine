@@ -7,7 +7,7 @@ document.addEventListener('alpine:init', () => {
         passengersPerTaxi: 3,
         queue: 0,
          
-        routes: $persist([
+        routes: Alpine.$persist([
             {
                 name: 'Rondebosch',
                 fare: 15.5,
@@ -43,11 +43,11 @@ document.addEventListener('alpine:init', () => {
             }
         ]),
 
-        myRoutes() {
-            return {
-              taxi: Alpine.$persist(routes)
-            };
-          },
+        // myRoutes() {
+        //     return {
+        //       taxi: Alpine.$persist(routes)
+        //     };
+        //   },
 
         buttonEnable(route){
             if(this.route.availableTaxi > 0){
