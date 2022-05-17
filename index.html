@@ -24,10 +24,10 @@
                 <h1 class="ui header center aligned">Taxi Trip</h1>
             </div>
             <div class="row add-more">
-                <div class="totals">
-                    Total made a day:<p class="tripsOverall"></p>
-                    Total number of ques:<p x-text="totalNumberOfQueues(routes)" class="tripsQty"></p>
-                </div>
+                <!-- <div class="totals">
+                    Total made a day:<p x-text="grandTotal()" class="tripsOverall"></p>
+                    Total number of ques:<p x-text="totalNumberOfQueues()" class="tripsQty"></p>
+                </div> -->
 
                 <div x-data="{ openAddRoute: false }" class="add-route">
                     <div x-show="openAddRoute" class="show-destination">
