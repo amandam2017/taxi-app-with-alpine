@@ -14,7 +14,6 @@
     <script src="https://code.jquery.com/jquery-3.1.1.min.js"
         integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8=" crossorigin="anonymous"></script>
     <script src="semantic/semantic.min.js"></script>
-    <!-- Alpine Plugins -->
 </head>
 
 <body>
@@ -27,7 +26,7 @@
             <div class="row add-more">
                 <div class="totals">
                     Total made a day:<p class="tripsOverall"></p>
-                    Total number of ques:<p class="tripsQty"></p>
+                    Total number of ques:<p x-text="totalNumberOfQueues(routes)" class="tripsQty"></p>
                 </div>
 
                 <div x-data="{ openAddRoute: false }" class="add-route">
@@ -51,7 +50,6 @@
                     <button @click="openAddTaxi = !openAddTaxi" class="ui secondary button">Add
                         Taxi</button>
                 </div> -->
-                <!-- </template> -->
             </div>
 
 
@@ -99,21 +97,11 @@
                                 <td x-text="route.costPerTrip"></td>
                                 <td>
                                     <span x-text="route.availableTaxi"></span>
-                                    <button @click="console.log(addTaxi(route))"> Add</button>
+                                    <button
+                                    x-bind:disabled="route.availableTaxi>0" class="ui red basic button"
+                                     @click="console.log(addTaxi(route))"> Add</button>
                                 </td>
-
-                                <!-- <div style="display: table-row">
-                                    <div style="display: table-cell" x-text="route.name"></div>
-                                    <div style="display: table-cell" x-text="route.destination"></div>
-                                </div> -->
                             </tr>
-
-                            <!-- <tr>
-                                <div style="display: table-row">
-                                    <div style="display: table-cell" x-text="route.name"></div>
-                                    <div style="display: table-cell" x-text="route.destination"></div>
-                                </div>
-                            </tr> -->
                         </template>
                     </tbody>
                 </table>

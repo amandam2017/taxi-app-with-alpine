@@ -62,6 +62,10 @@ document.addEventListener('alpine:init', () => {
             }
         },
 
+        totalNumberOfQueues(){
+            return this.routes.queue //+ Number(this.mediumTotalPrice) + Number(this.largeTotalPrice)
+        },
+
         totalFare(route){
             return Number(this.route.fare) * 3 // Number(this.passengersPerTaxi)
         },
