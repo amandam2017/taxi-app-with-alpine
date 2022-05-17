@@ -38,8 +38,7 @@ document.addEventListener('alpine:init', () => {
                 trips: 0,
                 queue: 0,
                 availableTaxi:5,
-                costPerTrip:0,
-               
+                costPerTrip:0,  
             }
         ]),
 
@@ -76,7 +75,7 @@ document.addEventListener('alpine:init', () => {
         
         takeTripFromPassengers(currentRoute){
             let tripFare = this.totalFare(currentRoute)
-            console.log(Number(tripFare));
+            // console.log(Number(tripFare));
             currentRoute.costPerTrip += tripFare;
             // console.log(currentRoute.totalFare(currentRoute));
            
@@ -87,6 +86,8 @@ document.addEventListener('alpine:init', () => {
 
         addToRoute(currentRoute){
             // console.log(currentRoute);
+
+                
             currentRoute.push({
                 name: document.getElementById('destination').value,
                 fare: document.getElementById('fareForDestination').value,
@@ -103,7 +104,9 @@ document.addEventListener('alpine:init', () => {
             this.route.queue++
         },
         qtydownFun(route) {
-            this.route.queue--
+            if(this.route.queue>0){
+                this.route.queue--
+            }
         },
         
     }))

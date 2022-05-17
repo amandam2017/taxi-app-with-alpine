@@ -1,5 +1,6 @@
 body{
     font-family: Verdana, Geneva, Tahoma, sans-serif;
+    background-color: rgb(244, 245, 194);
 }
 
 .container{
@@ -8,7 +9,7 @@ body{
 }
 
 .ui.center.aligned.header{
-    border: 1px solid;
+    border: 3px solid;
     font-size: 35px;
     font-weight: 600;
     margin: 50px 0;

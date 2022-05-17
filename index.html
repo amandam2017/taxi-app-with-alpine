@@ -24,10 +24,10 @@
                 <h1 class="ui header center aligned">Taxi Trip</h1>
             </div>
             <div class="row add-more">
-                <!-- <div class="totals">
-                    Total made a day:<p x-text="grandTotal()" class="tripsOverall"></p>
+                <div class="totals">
+                    Total made a day:<p x-text="`R${route.fare}`" class="tripsOverall"></p>
                     Total number of ques:<p x-text="totalNumberOfQueues()" class="tripsQty"></p>
-                </div> -->
+                </div>
 
                 <div x-data="{ openAddRoute: false }" class="add-route">
                     <div x-show="openAddRoute" class="show-destination">
@@ -88,7 +88,7 @@
                                         <button
                                             x-bind:disabled="buttonEnable(route) && route.queue < passengersPerTaxi"
                                             class="ui red basic button"
-                                            @click="takeTripFromPassengers(route), console.log(buttonEnable(route))">Leave</button>
+                                            @click="takeTripFromPassengers(route)">Leave</button>
                                         <button x-text="route.trips" class="ui green basic button"></button>
                                     </div>
                                 </td>
@@ -96,19 +96,23 @@
                                 <!-- <td x-text="`R${route.totalFare()}`"></td> -->
                                 <td x-text="route.costPerTrip"></td>
                                 <td>
-                                    <span x-text="route.availableTaxi"></span>
+                                    <!-- <span x-text="route.availableTaxi"></span>
                                     <button
                                     x-bind:disabled="route.availableTaxi>0" class="ui red basic button"
-                                     @click="console.log(addTaxi(route))"> Add</button>
+                                     @click="console.log(addTaxi(route))"> Add</button> -->
+
+                                     <div class="ui buttons">
+                                        <button
+                                        x-bind:disabled="route.availableTaxi>0" class="ui red basic button"
+                                        @click="console.log(addTaxi(route))"> Add</button>
+                                        <button x-text="route.availableTaxi" class="ui green basic button"></button>
+                                    </div>
                                 </td>
                             </tr>
                         </template>
                     </tbody>
                 </table>
 
-                <!-- <div x-data="{ routes: localStorage.getItem('msg') }" x-init="$watch('routes', (val) => localStorage.setItem('msg', val))">
-                    <div><code>localStorage.getItem('msg')</code>: "<span x-text="localStorage.getItem('msg')"></span>"</div>
-                  </div> -->
             </div>
         </div>
     </div>
