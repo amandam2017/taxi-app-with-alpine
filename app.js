@@ -7,7 +7,7 @@ document.addEventListener('alpine:init', () => {
         passengersPerTaxi: 3,
         queue: 0,
          
-        routes: [
+        routes: $persist([
             {
                 name: 'Rondebosch',
                 fare: 15.5,
@@ -41,7 +41,7 @@ document.addEventListener('alpine:init', () => {
                 costPerTrip:0,
                
             }
-        ],
+        ]),
 
         myRoutes() {
             return {
