@@ -9,6 +9,10 @@
     <link rel="stylesheet" href="styles.css">
 
     <script defer src="https://unpkg.com/@alpinejs/persist@3.x.x/dist/cdn.min.js"></script>
+    <!-- <script src="https://cdn.jsdelivr.net/npm/lodash@4.17.21/lodash.min.js">
+    const _ = require('lodash');
+    </script> -->
+    <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/lodash.js/0.10.0/lodash.min.js"></script> 
     <script src="app.js"></script>
     <script defer src="https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js"></script>
     <script src="https://code.jquery.com/jquery-3.1.1.min.js"
@@ -18,14 +22,14 @@
 
 <body>
     <div class="container">
-        <!-- x-data="{ count: $persist(0) }" -->
         <div x-data="taxi">
             <div class="row">
                 <h1 class="ui header center aligned">Taxi Trip</h1>
             </div>
             <div class="row add-more">
                 <div class="totals">
-                    Total made a day:<p x-text="`R${route.fare}`" class="tripsOverall"></p>
+                    <!-- Total made a day:<p x-text="`R${route.fare}`" class="tripsOverall"></p> -->
+                    Total made a day:<p x-text="`R${costPerTripGrand}`" class="tripsOverall"></p>
                     Total number of ques:<p x-text="totalNumberOfQueues()" class="tripsQty"></p>
                 </div>
 
@@ -88,13 +92,13 @@
                                         <button
                                             x-bind:disabled="buttonEnable(route) && route.queue < passengersPerTaxi"
                                             class="ui red basic button"
-                                            @click="takeTripFromPassengers(route)">Leave</button>
+                                            @click="takeTripFromPassengers(route), costPerTripGrand += route.costPerTrip">Leave</button>
                                         <button x-text="route.trips" class="ui green basic button"></button>
                                     </div>
                                 </td>
                                 <td x-text="`R${route.fare}`"></td>
                                 <!-- <td x-text="`R${route.totalFare()}`"></td> -->
-                                <td x-text="route.costPerTrip"></td>
+                                <td x-text="`R${route.costPerTrip}`"></td>
                                 <td>
                                     <!-- <span x-text="route.availableTaxi"></span>
                                     <button

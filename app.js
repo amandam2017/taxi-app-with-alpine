@@ -1,4 +1,6 @@
+// const _ = require('lodash');
 document.addEventListener('alpine:init', () => {
+    
     Alpine.data('taxi', () => ({
         qty: 0,
         leaveCount: 0,
@@ -6,7 +8,9 @@ document.addEventListener('alpine:init', () => {
         // fare: 0,
         passengersPerTaxi: 3,
         queue: 0,
-         
+        // costPerTripGrand:0,
+        costPerTripGrand:Alpine.$persist(0),
+        
         routes: Alpine.$persist([
             {
                 name: 'Rondebosch',
@@ -39,14 +43,10 @@ document.addEventListener('alpine:init', () => {
                 queue: 0,
                 availableTaxi:5,
                 costPerTrip:0,  
-            }
-        ]),
+            },
+            // {costPerTripGrand:0},
 
-        // myRoutes() {
-        //     return {
-        //       taxi: Alpine.$persist(routes)
-        //     };
-        //   },
+        ]),
 
         buttonEnable(route){
             if(this.route.availableTaxi > 0){
@@ -69,25 +69,40 @@ document.addEventListener('alpine:init', () => {
             return this.costPerTrip //+ Number(this.mediumTotalPrice) + Number(this.largeTotalPrice)
         },
 
+        // _.sumBy(routes, function(route){return route.costPerTrip})
+
         totalFare(route){
             return Number(this.route.fare) * 3 // Number(this.passengersPerTaxi)
         },
+
+        subTotalPerDay(){
+            let all = this.routes;
+            console.log(all);
+
+           _.sumBy(all, route => {
+                return route.costPerTrip;
+            })
+        },
         
         takeTripFromPassengers(currentRoute){
+            // let all = currentRoute;
+            // console.log(all);
+            // let profit = this.subTotalPerDay();
+            // console.log(profit);
+            
             let tripFare = this.totalFare(currentRoute)
-            // console.log(Number(tripFare));
+            
             currentRoute.costPerTrip += tripFare;
-            // console.log(currentRoute.totalFare(currentRoute));
-           
+            
+            // currentRoute.costPerTripGrand += tripFare;
+                       
             currentRoute.trips++;
             currentRoute.queue -= 3;
             currentRoute.availableTaxi -=1;
         },
 
         addToRoute(currentRoute){
-            // console.log(currentRoute);
-
-                
+            
             currentRoute.push({
                 name: document.getElementById('destination').value,
                 fare: document.getElementById('fareForDestination').value,

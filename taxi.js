@@ -1,0 +1,1 @@
+_.sumBy(routes, function(route){return route.costPerTrip})
