@@ -28,21 +28,25 @@
             </div>
             <div class="row add-more">
                 <div class="totals">
-                    <!-- Total made a day:<p x-text="`R${route.fare}`" class="tripsOverall"></p> -->
                     Total made a day:<p x-text="`R${costPerTripGrand}`" class="tripsOverall"></p>
                     Total number of ques:<p x-text="numberOfQuesFun(routes)" class="tripsQty"></p>
                 </div>
 
                 <div x-data="{ openAddRoute: false }" class="add-route">
                     <div x-show="openAddRoute" class="show-destination">
+                        
                         <label for="destination">Destination</label>
                         <input id="destination" type="text" placeholder="enter destination">
                         <label for="destination">Taxi Fare</label>
                         <input id="fareForDestination" type="number" step="0.01" placeholder="enter amount">
-                        <button @click="addToRoute(routes)" type="submit">Add</button>
+                        <button @click="$refs.errorMessage, addToRoute(routes), openAddRoute = !openAddRoute" type="submit">Add</button>
+                            <!-- <span x-show="errorMessage"></span> -->
+
+
                     </div>
                     <button @click="openAddRoute = !openAddRoute" class="ui secondary button">Add
                         Destination</button>
+                        
                 </div>
 
                 <!-- <div x-data="{ openAddTaxi: false }" class="add-taxi">

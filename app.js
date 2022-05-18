@@ -7,7 +7,7 @@ document.addEventListener('alpine:init', () => {
         availableTaxi: 5,
         // fare: 0,
         passengersPerTaxi: 3,
-        queue: 0,
+        // queue: 0,
         numberOfQues:0,
         costPerTripGrand:Alpine.$persist(0),
         
@@ -47,6 +47,8 @@ document.addEventListener('alpine:init', () => {
 
         ]),
 
+
+
         numberOfQuesFun(routes){
             console.log(routes);
             let nuM = Object.keys(routes).length;
@@ -80,27 +82,12 @@ document.addEventListener('alpine:init', () => {
         totalFare(route){
             return Number(this.route.fare) * 3 // Number(this.passengersPerTaxi)
         },
-
-        // subTotalPerDay(){
-        //     let all = this.routes;
-        //     console.log(all);
-
-        //    _.sumBy(all, route => {
-        //         return route.costPerTrip;
-        //     })
-        // },
         
         takeTripFromPassengers(currentRoute){
-            // let all = currentRoute;
-            // console.log(all);
-            // let profit = this.subTotalPerDay();
-            // console.log(profit);
-            
+  
             let tripFare = this.totalFare(currentRoute)
             
             currentRoute.costPerTrip += tripFare;
-            
-            // currentRoute.costPerTripGrand += tripFare;
                        
             currentRoute.trips++;
             currentRoute.queue -= 3;
@@ -109,22 +96,47 @@ document.addEventListener('alpine:init', () => {
 
         addToRoute(currentRoute){
             console.log(currentRoute);
-            
-            currentRoute.push({
-                name: document.getElementById('destination').value,
-                fare: document.getElementById('fareForDestination').value,
-                availableTaxi:5,
-                costPerTrip:0, 
-                queue: 0,
-                trips: 0,
+            let routeName = document.getElementById('destination').value;
+            let routeFare = document.getElementById('fareForDestination').value;
+
+
+            if(routeName && routeFare){
+                let name = routeName;
+                console.log(name);
+                let fare = routeFare;
+                console.log(fare);
+
+                currentRoute.push({
+                    name,
+                    fare,
+                    availableTaxi:5,
+                    costPerTrip:0, 
+                    queue: 0,
+                    trips: 0,
+                    
+                })
+            }else{
+                return 'this.$refs.errorMessage'
+            }
+
+            // currentRoute.push({
+            //     name: document.getElementById('destination').value,
+            //     fare: document.getElementById('fareForDestination').value,
+            //     availableTaxi:5,
+            //     costPerTrip:0, 
+            //     queue: 0,
+            //     trips: 0,
                 
-            })
+            // })
 
         },
 
         qtyUpFun(route) {
             this.route.queue++
         },
+
+
+
         qtydownFun(route) {
             if(this.route.queue>0){
                 this.route.queue--
