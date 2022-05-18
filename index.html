@@ -30,7 +30,7 @@
                 <div class="totals">
                     <!-- Total made a day:<p x-text="`R${route.fare}`" class="tripsOverall"></p> -->
                     Total made a day:<p x-text="`R${costPerTripGrand}`" class="tripsOverall"></p>
-                    Total number of ques:<p x-text="totalNumberOfQueues()" class="tripsQty"></p>
+                    Total number of ques:<p x-text="numberOfQuesFun(routes)" class="tripsQty"></p>
                 </div>
 
                 <div x-data="{ openAddRoute: false }" class="add-route">
