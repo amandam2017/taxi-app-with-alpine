@@ -94,13 +94,16 @@ document.addEventListener('alpine:init', () => {
             currentRoute.availableTaxi -=1;
         },
 
+        errorMessage: 'oops! empty',
+        successMessage: 'you have added a new route',
+
         addToRoute(currentRoute){
             console.log(currentRoute);
             let routeName = document.getElementById('destination').value;
             let routeFare = document.getElementById('fareForDestination').value;
 
 
-            if(routeName && routeFare){
+            if(routeName && routeFare>0){
                 let name = routeName;
                 console.log(name);
                 let fare = routeFare;
@@ -114,9 +117,10 @@ document.addEventListener('alpine:init', () => {
                     queue: 0,
                     trips: 0,
                     
+                    successMessage,
                 })
             }else{
-                return 'this.$refs.errorMessage'
+                return currentRoute.errorMessage
             }
 
             // currentRoute.push({

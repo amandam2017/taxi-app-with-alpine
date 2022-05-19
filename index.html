@@ -39,8 +39,9 @@
                         <input id="destination" type="text" placeholder="enter destination">
                         <label for="destination">Taxi Fare</label>
                         <input id="fareForDestination" type="number" step="0.01" placeholder="enter amount">
-                        <button @click="$refs.errorMessage, addToRoute(routes), openAddRoute = !openAddRoute" type="submit">Add</button>
-                            <!-- <span x-show="errorMessage"></span> -->
+                        <button @click=" console.log(errorMessage), openAddRoute = !openAddRoute" type="submit">Add</button>
+                            <span x-text="errorMessage" ></span>
+                            <span x-text="successMessage" ></span>
 
 
                     </div>
